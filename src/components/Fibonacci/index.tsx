@@ -2,12 +2,14 @@ import { useState } from 'react'
 import Module from '../../wasm/main'
 import './style.css'
 
+const initialStateSequence = {
+  sequence: '',
+  nFib: ''
+}
+
 const FibonacciSequence = (): JSX.Element => {
 
-  const [sequenceResult, setSequenceResult] = useState({
-    sequence: '',
-    nFib: ''
-  });
+  const [sequenceResult, setSequenceResult] = useState(initialStateSequence);
   const [nFib, setNFib] = useState(0)
 
   const getFibSequence = (n: number): void => {
@@ -18,6 +20,7 @@ const FibonacciSequence = (): JSX.Element => {
   }
 
   const handleInput = (e: React.ChangeEvent<HTMLInputElement>): void => {
+    setSequenceResult(initialStateSequence)
     setNFib(Number(e.target.value))
   }
 
