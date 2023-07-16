@@ -33,8 +33,9 @@ yarn start
       - main.wasm
 
 ### SHELL
-  Commands for compiling .cpp files to .js files and .wasm files.
   You must install Emscripten before you can run this file.
+  
+  Commands for compiling .cpp files to .js files and .wasm files.
   To compile new wasm files run the shell file: wasm.sh
   - Fibonacci: 
     - wasm.sh
