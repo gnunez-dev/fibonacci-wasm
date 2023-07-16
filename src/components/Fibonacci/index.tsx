@@ -4,7 +4,10 @@ import './style.css'
 
 const FibonacciSequence = (): JSX.Element => {
 
-  const [sequenceResult, setSequenceResult] = useState('');
+  const [sequenceResult, setSequenceResult] = useState({
+    sequence: '',
+    nFib: ''
+  });
   const [nFib, setNFib] = useState(0)
 
   const getFibSequence = (n: number): void => {
@@ -39,10 +42,12 @@ const FibonacciSequence = (): JSX.Element => {
         <button className='fib__form_btn' onClick = {() => getFibSequence(nFib)}>Get Sequence</button>
       </div>
       {
-        sequenceResult &&
+        sequenceResult?.sequence &&
           <div className='fib__sequence'>
+            <h3 className='fib__sequence_title'>{`Fibocci ${nFib}:`}</h3>
+            <p className='fib__sequence_result'>{sequenceResult.nFib}</p>
             <h3 className='fib__sequence_title'>Sequence Result</h3>
-            <p className='fib__sequence_result'>{sequenceResult}</p>
+            <p className='fib__sequence_result'>{sequenceResult.sequence}</p>
           </div>
       }
     </div>

@@ -7,7 +7,7 @@ The app relies on the `yarn` package manager.
 To run the app:
 
 ```
-git clone 
+git clone https://github.com/gnunez-dev/fibonacci-wasm.git
 cd fibonacci-wasm/
 yarn install
 yarn start
