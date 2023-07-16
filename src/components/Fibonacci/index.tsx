@@ -44,7 +44,7 @@ const FibonacciSequence = (): JSX.Element => {
       {
         sequenceResult?.sequence &&
           <div className='fib__sequence'>
-            <h3 className='fib__sequence_title'>{`Fibocci ${nFib}:`}</h3>
+            <h3 className='fib__sequence_title'>{`Fibonacci ${nFib}: `}</h3>
             <p className='fib__sequence_result'>{sequenceResult.nFib}</p>
             <h3 className='fib__sequence_title'>Sequence Result</h3>
             <p className='fib__sequence_result'>{sequenceResult.sequence}</p>
