@@ -4,27 +4,35 @@
 #include <boost/multiprecision/cpp_int.hpp>
 #include <emscripten/bind.h>
 
-using namespace emscripten;
+struct ObjFib {
+  std::string sequence;
+  std::string nFib;
+};
 
-std::string getFibonacciSequence(int n){
-  std::vector<boost::multiprecision::cpp_int> sequence = {0, 1};
+ObjFib getFibonacciSequence(int n){
+  boost::multiprecision::cpp_int beforeOne = 0;
+  boost::multiprecision::cpp_int beforeTwo = 1;
   std::string sequeceToReturn = "0 • 1";
 
   for(int i = 2; i <= n; i++){
-    boost::multiprecision::cpp_int newFibonacci = sequence[i - 1] + sequence[i - 2];
-    sequence.push_back(newFibonacci);
+    boost::multiprecision::cpp_int newFibonacci = beforeOne + beforeTwo;
     sequeceToReturn += " • " + boost::lexical_cast<std::string>(newFibonacci);
+    beforeOne = beforeTwo;
+    beforeTwo = newFibonacci;
   }
   
-  std::cout << "fibonnaci: " << sequence[n] << std::endl;
+  ObjFib objToReturn;
+  objToReturn.sequence = n == 0 ? "0" : sequeceToReturn;
+  objToReturn.nFib = n == 0 ? "0" : boost::lexical_cast<std::string>(beforeTwo);
 
-  if(n == 0){
-    return "0";
-  } else {
-    return sequeceToReturn;
-  }
+  return objToReturn;
 }
 
+
 EMSCRIPTEN_BINDINGS(my_module) {
-  function("getFibonacciSequence", &getFibonacciSequence);
+  emscripten::value_object<ObjFib>("ObjFib")
+    .field("sequence", &ObjFib::sequence)
+    .field("nFib", &ObjFib::nFib);
+
+  emscripten::function("getFibonacciSequence", &getFibonacciSequence);
 }
